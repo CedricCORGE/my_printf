@@ -1,0 +1,31 @@
+/*
+** EPITECH PROJECT, 2020
+** my_put_octal_string.c
+** File description:
+** display special case of octal
+*/
+
+#include "my.h"
+#include "my_printf.h"
+#include <stdarg.h>
+
+void my_put_octal_string(char const *str)
+{
+    int index = 0;
+
+    while (str[index] != '\0') {
+        if (str[index] > 32 && str[index] < 127) {
+            my_putchar(str[index]);
+        }
+        if (str[index] <= 32 || str[index] >= 127) {
+            my_putchar('\\');
+            if (str[index] <= 32)
+                my_putchar('0');
+            if (str[index] < 8) {
+                my_putchar('0');
+            }
+            my_put_octal_nbr(str[index]);
+        }
+        index++;
+    }
+}
